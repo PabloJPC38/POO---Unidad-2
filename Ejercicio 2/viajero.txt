@@ -1,0 +1,4 @@
+12,38431122,Pablo,Pizarro,1500
+20,43182906,Juan,Perez,2000
+5,10234500,Pepe,Lopez,50000
+50,30400802,Luis,Gutierez,30000
