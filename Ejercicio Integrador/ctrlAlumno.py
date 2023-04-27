@@ -15,7 +15,7 @@ class ctrlAlu:
     
     @staticmethod
     def dimension(ruta: str):
-        with open(ruta, "r", encoding="utf8") as file:
+        with open(ruta, "r", encoding="utf-8") as file:
             # Saltar la primera línea (header)
             next(file)
         
@@ -32,7 +32,7 @@ class ctrlAlu:
         dim = ctrlAlu.dimension(ruta)
 
         # Crear un arreglo vacío de tipo object con la dimensión obtenida
-        alumnos = np.empty(dim, dtype=object)
+        alumnos = np.empty(dim, dtype=Alumno)
 
         with open(ruta, "r", encoding="utf-8", errors="ignore") as file:
             # Saltar la primera línea (header)

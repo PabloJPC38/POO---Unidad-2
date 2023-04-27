@@ -28,16 +28,7 @@ class Alumno:
     
     def __lt__(self, otro: Alumno):
         
-        if self.__anio != otro.__anio:
-            
-            return self.__anio < otro.__anio
-        
-        elif self.__ape != otro.__ape:
-            
-            return self.__ape < otro.__ape
-        else:
-            
-            return self.__nbre < otro.__nbre
+        return (self.__anio, self.__ape, self.__nbre) < (otro.__anio, otro.__ape, otro.__nbre)
 
     def __repr__(self):
         return f"Alumno(dni={self.__dni}, ape={self.__ape}, nbre={self.__nbre}, carrera={self.__carrera}, anio={self.__anio})"
