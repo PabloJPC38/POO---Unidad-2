@@ -2,17 +2,15 @@
 
 class PlanAhorro:
     
-    __cant_cuotas = 0
-    __cant_licitar = 0
+    __cuotas = 0
+    __cuotas_licitar = 0
     
-    def __init__(self, cod, modelo, vers, valor, cant_cuotas, cant_licitar) -> None:
+    def __init__(self, cod, modelo, vers, valor) -> None:
         
         self.__cod = cod
         self.__modelo = modelo
         self.__vers = vers
         self.__valor = valor
-        self.__cant_cuotas = cant_cuotas
-        self.__cant_licitar = cant_licitar
 
     def getCod(self):
         
@@ -32,21 +30,32 @@ class PlanAhorro:
     
     def getCant_Cuotas(self):
         
-        return self.__cant_cuotas
+        return self.__cuotas
     
-    def getCant_Cuotas_Licitar(self):
-        
-        return self.__cant_licitar
-        
     def setValor(self, valor : float):
         
         self.__valor = valor
     
-    def setCuotas_Licitar(self, cant):
-        
-        self.__cant_licitar = cant
-    
     def valorCuota(self):
         
-        return (self.__valor / self.__cant_cuotas) + self.__valor * 0.1
+        return (self.__valor / float(PlanAhorro.__cuotas)) + self.__valor * 0.1
     
+    @classmethod
+    def setCuotas(cls,cant):
+        
+        cls.__cuotas = cant
+
+    @classmethod
+    def setCuotasLicitar(cls, cant):
+        
+        cls.__cuotas_licitar = cant
+
+    @classmethod
+    def getCuotas(cls):
+        
+        return cls.__cuotas
+    
+    @classmethod
+    def getCant_Cuotas_Licitar(cls):
+        
+        return cls.__cuotas_licitar

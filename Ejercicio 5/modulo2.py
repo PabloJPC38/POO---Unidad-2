@@ -7,16 +7,27 @@ class CtrlPA:
     @staticmethod
     def leerArchivo():
         
+        autos :list[PlanAhorro] = []
+        
         with open(path.dirname(__file__) + "/planes.csv","r",encoding = "utf8") as file:
             
-            return list(map(lambda l: PlanAhorro(int(l[0]),l[1],l[2],float(l[3]),int(l[4]),int(l[5])), reader(file, delimiter = ";")))
-    
+            for i, line in enumerate(file):
+                # Dividir la línea por el delimitador ';'
+                values = line.strip().split(';')
+
+                auto = PlanAhorro(values[0], values[1], values[2], float(values[3]))
+                auto.setCuotas(int(values[4]))
+                auto.setCuotasLicitar(int(values[5]))
+                autos.append(auto)
+            
+            return autos
+        
     @staticmethod
     def cuotaInferior(datos: list[PlanAhorro], valor):
         
         for dato in datos:
-            
-            if dato.getCant_Cuotas() < valor:
+
+            if dato.valorCuota() < valor:
                 
                 print(f"{dato.getCod()} - {dato.getModelo()} - {dato.getVers()}")
                 
@@ -54,9 +65,9 @@ class CtrlPA:
             
             if op == 4:
                 
-                i = [dato.getCod() for dato in datos].index(int(input("Ingrese código del plan:")))
+                i = [dato.getCod() for dato in datos].index(input("Ingrese código del plan:"))
                 
-                datos[i].setCuotas_Licitar(int(input("Ingrese nueva cantidad de cuotas para licitar:")))
+                datos[i].setCuotasLicitar(int(input("Ingrese nueva cantidad de cuotas para licitar:")))
                 print(f"Cantidad de cuotas a licitar:{datos[i].getCant_Cuotas_Licitar()}")
             
             print()
